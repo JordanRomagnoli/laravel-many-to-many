@@ -5,7 +5,7 @@
 @section('main-content')
     <section id="edit-project">
         <h1>
-            Modifica il <span>progetto</span>
+            Modifica il progetto
         </h1>
     
         <form action="{{ route('admin.projects.update',['project' => $project->slug])  }}" method="POST">
@@ -15,7 +15,7 @@
             @csrf
     
             <label for="title" class="form-label">Nome Progetto</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" placeholder="Inserisci il nome del nuovo progetto"
+            <input type="text" class=" @error('title') is-invalid @enderror" id="title" name="title" placeholder="Inserisci il nome del nuovo progetto"
                 maxlength="1024" value="{{$project->title, old('title') }}">
             @error('title')
                 <div class="error">
@@ -24,7 +24,7 @@
             @enderror
 
             <label for="content" class="form-label">Descrizione</label>
-            <input type="text" class="form-control @error('content') is-invalid @enderror" id="content" name="content" placeholder="Inserisci la descrizione del progetto"
+            <input type="text" class=" @error('content') is-invalid @enderror" id="content" name="content" placeholder="Inserisci la descrizione del progetto"
                 maxlength="1024" value="{{$project->content, old('content') }}">
             @error('content')
                 <div class="error">
@@ -33,7 +33,7 @@
             @enderror
     
             <label for="type_id" class="form-label">Settore</label>
-            <select name="type_id" id="type_id" class="form-select">
+            <select name="type_id" id="type_id">
                 <option
                     {{ old('type_id', $project->type_id) == null ? 'selected' : '' }}
                     value="">

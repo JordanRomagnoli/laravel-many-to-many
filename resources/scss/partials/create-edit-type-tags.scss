@@ -1,33 +1,37 @@
-#edit-project, #create-project{
+.create-edit-type-tags{
 
-    padding-top: 40px;
     height: 100vh;
+    padding-top: 80px;
     h1{
-        
+
         font-size: 3rem;
         font-weight: 700;
         color: black;
         margin: 0;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
+    
 
     form{
-
+        
         label{
 
             display: block;
             font-weight: bolder;
             font-size: 1.3rem;
         }
+
         input{
+
             width: 100%;
             background-color: transparent;
             border: 2px solid black;
             padding: 7px 20px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
-        //ERROR
+
         .error{
+
             min-height: 70px;
             line-height: 70px;
             text-align: center;
@@ -39,46 +43,8 @@
             margin-bottom: 15px;
         }
 
-        //-----
-
-        select{
-
-            width: 100%;
-            background-color: transparent;
-            border: 2px solid black;
-            padding: 7px 20px;
-            margin-bottom: 15px;
-            option{
-
-                background-color: white;
-
-            }
-
-        }
-
         div{
-            
-            .form-check{
 
-                margin-bottom: 30px;
-                label{
-                    display: inline-block;
-                    margin-right: 8px;
-                }
-                input{
-                    height: 19px;
-                    width: 19px;
-                    line-height: 19px;
-                    text-align: center;
-                    vertical-align: center;
-                    background-color: white;
-                    border-radius: 50%;
-                }
-            }
-            
-        }
-
-        div{
             button{
 
                 font-weight: 600;
@@ -95,4 +61,5 @@
             }
         }
     }
+
 }

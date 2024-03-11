@@ -8,15 +8,15 @@
         <div class="col d-flex justify-content-center">
             <div class="my-card">
                 <div class="my-card-body">
-                    <h1 class="text-center mb-5">
+                    <h1 class="text-center">
                         {{ $project->title }}
                     </h1>
-
-                    <p class="mb-3">
+                    
+                    <p>
                         {{ $project->content }}
                     </p>
 
-                    <div>
+                    <div class="info">
                         Creato il: 
                         <span class="text-success">
                             {{ $project->created_at->format('d/m/Y') }}
