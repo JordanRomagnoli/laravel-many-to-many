@@ -5,7 +5,7 @@
 @section('main-content')
     <section id="index-guest">
         <div class="container">
-            <div class="row justify-content-end">
+            <div class="row">
                 <div class="col-5">
                     <a href="{{route('types.index')}}" class="show-button">
                         Guarda tutti i settori in cui abbiamo lavorato
