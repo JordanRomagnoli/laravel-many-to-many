@@ -15,6 +15,7 @@ use App\Http\Requests\UpdateProjectRequest;
 
 // Helper
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -47,7 +48,12 @@ class ProjectController extends Controller
     {
         $validatedProjectData = $request->validated();
 
+        $coverImage = null;
+        if (isset($validatedProjectData['cover_img'])) {
+            $coverImage = Storage::disk('public')->put('img', $validatedProjectData['cover_img']);;
+        }
 
+        $validatedProjectData['cover_img'] = $coverImage;
         $validatedProjectData['slug'] = Str::slug($validatedProjectData['title']);
 
         $project = Project::create($validatedProjectData);
@@ -91,9 +97,25 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, string $slug)
     {
         $validatedProjectData = $request->validated();
-
         $project = Project::where('slug', $slug)->firstOrFail();
 
+        $coverImage = $project->cover_img;
+
+        if (isset($validatedProjectData['cover_img'])) {
+            if ($coverImage != null) {
+                Storage::disk('public')->delete($project->cover_img);
+            }
+
+            $coverImage = Storage::disk('public')->put('img', $validatedProjectData['cover_img']);
+        }
+        else if (isset($validatedProjectData['delete_cover_img'])) {
+            Storage::disk('public')->delete($project->cover_img);
+
+            $coverImage = null;
+        }
+        
+
+        $validatedProjectData['cover_img'] = $coverImage;
         $validatedProjectData['slug'] = Str::slug($validatedProjectData['title']);
 
         $project->update($validatedProjectData);
@@ -114,6 +136,11 @@ class ProjectController extends Controller
     public function destroy(string $slug)
     {   
         $project = Project::where('slug', $slug)->firstOrFail();
+
+        if ($project->cover_img != null) {
+            Storage::disk('public')->delete($project->cover_img);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');

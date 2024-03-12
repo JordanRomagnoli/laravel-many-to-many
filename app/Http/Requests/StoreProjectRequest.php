@@ -31,6 +31,7 @@ class StoreProjectRequest extends FormRequest
             'content' => 'required|max:1024',
             'type_id' => 'nullable|exists:types,id',
             'tags' => 'nullable|array|exists:tags,id',
+            'cover_img' => 'nullable|image',
         ];
     }
 
@@ -39,6 +40,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'title.required' => 'Inserisci un Titolo per il tuo Progetto',
             'content.required'=> 'Inserisci una descrizione per il tuo Progetto',
+            'cover_img.image'=> 'Inserisci un file valido',
         ];
     }
 }

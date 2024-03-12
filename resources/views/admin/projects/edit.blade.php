@@ -8,7 +8,7 @@
             Modifica il progetto
         </h1>
     
-        <form action="{{ route('admin.projects.update',['project' => $project->slug])  }}" method="POST">
+        <form action="{{ route('admin.projects.update',['project' => $project->slug])  }}" enctype="multipart/form-data" method="POST">
             
             @method('PUT')
     
@@ -31,6 +31,37 @@
                     {{ $message }}
                 </div>
             @enderror
+
+            <label for="cover_img" class="form-label">Immagine di Copertina</label>
+            <input type="file" class=" @error('cover_img') is-invalid @enderror" id="cover_img" name="cover_img" placeholder="Inserisci un'immagine del progetto">
+            @error('cover_img')
+                <div class="error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+            @if ($project->cover_img != null)
+
+                <div class="delete-image">
+                    <label for="delete_cover_img">
+                        Rimuovi immagine
+                    </label>
+                    <input type="checkbox" value="1" id="delete_cover_img" name="delete_cover_img">
+                </div>
+
+                @error('delete_cover_img')
+                    <div class="error">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <h4>
+                    Copertina attuale
+                </h4>
+                <div class="preview">
+                    <img src="/storage/{{ $project->cover_img }}">
+                </div>
+            @endif
     
             <label for="type_id" class="form-label">Settore</label>
             <select name="type_id" id="type_id">

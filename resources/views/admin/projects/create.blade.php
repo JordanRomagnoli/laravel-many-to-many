@@ -8,7 +8,7 @@
             Nuovo Progetto
         </h1>
     
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <label for="title" class="form-label">Nome Progetto</label>
@@ -28,7 +28,16 @@
                     {{ $message }}
                 </div>
             @enderror
-    
+
+            <label for="cover_img" class="form-label">Immagine di Copertina</label>
+            <input type="file" class=" @error('cover_img') is-invalid @enderror" id="cover_img" name="cover_img" placeholder="Inserisci un'immagine del progetto">
+            @error('cover_img')
+                <div class="error">
+                    {{ $message }}
+                </div>
+            @enderror
+
+
             <label for="type_id" class="form-label">Settore</label>
             <select name="type_id" id="type_id" class=" mb-2 ">
                 <option

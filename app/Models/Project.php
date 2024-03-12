@@ -14,7 +14,8 @@ class Project extends Model
         'slug',
         'content',
         'type_id',
-        'status'
+        'status',
+        'cover_img'
     ];
 
     //Relationships

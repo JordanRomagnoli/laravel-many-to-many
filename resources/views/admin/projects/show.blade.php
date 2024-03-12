@@ -3,22 +3,30 @@
 @section('page-title', $project->title)
 
 @section('main-content')
-<section id="admin-show">
-    <div class="row">
+<section id="show-admin">
+    <div class="row g-0">
         <div class="col d-flex justify-content-center">
             <div class="my-card">
                 <div class="my-card-body">
-                    <h1 class="text-center">
+                    <h1 class="text-center mb-5">
                         {{ $project->title }}
                     </h1>
-                    
-                    <p>
+
+                    <p class="mb-3">
                         {{ $project->content }}
                     </p>
 
+                    @if ($project->cover_img != null)
+                        <div>
+                            <div class="cover_img">
+                                <img src="{{ asset('storage/'.$project->cover_img) }}">
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="info">
                         Creato il: 
-                        <span class="text-success">
+                        <span>
                             {{ $project->created_at->format('d/m/Y') }}
                         </span>
                         <br>
@@ -46,4 +54,5 @@
         </div>
     </div>
 </section>
+    
 @endsection
